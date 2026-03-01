@@ -5,13 +5,20 @@ const Job = require("../models/Job");
 const protect = require("../middleware/authMiddleware");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const sendEmail = require("../utils/sendEmail");
 const User = require("../models/User");
 
 
+const uploadDir = "uploads";
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, uploadDir);   // ✅ FIXED
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -28,8 +35,6 @@ const upload = multer({
     }
   }
 });
-
-
 
 // APPLY FOR JOB
 router.post("/:jobId", protect, upload.single("resume"), async (req, res) => {
