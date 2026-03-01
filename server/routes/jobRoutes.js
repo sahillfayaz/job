@@ -82,6 +82,21 @@ router.get("/", async (req, res) => {
 });
 
 
+// GET SINGLE JOB BY ID
+router.get("/:id", async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id).populate("employer");
 
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    res.json(job);
+
+  } catch (error) {
+    console.error("Job fetch error:", error.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;
