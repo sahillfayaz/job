@@ -20,7 +20,7 @@ function EmployerDashboard() {
   const fetchMyJobs = async () => {
     try {
       const res = await axios.get(
-        '${process.env.REACT_APP_API_URL}/api/jobs/my',
+        `${process.env.REACT_APP_API_URL}/api/jobs/my`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -45,7 +45,7 @@ function EmployerDashboard() {
 
     try {
       await axios.post(
-        '${process.env.REACT_APP_API_URL}/api/jobs',
+        `${process.env.REACT_APP_API_URL}/api/jobs`,
         formData,
         {
           headers: {

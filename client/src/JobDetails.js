@@ -11,7 +11,7 @@ function JobDetails() {
 
   useEffect(() => {
     const fetchJob = async () => {
-      const res = await axios.get('${process.env.REACT_APP_API_URL}/api/jobs');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/jobs`);
       const foundJob = res.data.jobs.find(j => j._id === id);
       setJob(foundJob);
     };

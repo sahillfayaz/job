@@ -9,7 +9,7 @@ function CandidateDashboard() {
   useEffect(() => {
     const fetchApplications = async () => {
       const res = await axios.get(
-        '${process.env.REACT_APP_API_URL}/api/applications',
+        `${process.env.REACT_APP_API_URL}/api/applications`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

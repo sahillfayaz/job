@@ -11,7 +11,7 @@ function Home() {
   }, []);
 
   const fetchJobs = async () => {
-    const res = await axios.get('${process.env.REACT_APP_API_URL}/api/jobs');
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/jobs`);
     setJobs(res.data.jobs);
   };
 
